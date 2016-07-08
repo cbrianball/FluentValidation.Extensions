@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "FluentValidation": "6.2.1",
+    //"NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0"
+      },
+      "dependencies": {}
+    }
+    //"netstandard1.6": {
+    //  "imports": "dnxcore50"
+    //}
+    }
+}

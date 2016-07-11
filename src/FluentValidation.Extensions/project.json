@@ -1,10 +1,8 @@
 {
   "version": "1.0.0-*",
-
   "dependencies": {
     "FluentValidation": "6.2.1",    
   },
-
   "frameworks": {
     "net451": {
       "frameworkAssemblies": {
@@ -12,5 +10,8 @@
       },
       "dependencies": {}
     }
+  },
+  "buildOptions": {
+    "xmlDoc": true
   }
 }

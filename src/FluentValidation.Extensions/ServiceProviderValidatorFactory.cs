@@ -5,7 +5,7 @@ namespace FluentValidation.Extensions
     /// <summary>
     /// Simple implementation of <see cref="IValidatorFactory"/> that uses the provided <see cref="IServiceProvider"/> to create validators.
     /// Most popular IoC containers implement <see cref="IServiceProvider"/> and therefore they can be used.
-    /// This type does assume that if a <see cref="IServiceProvider"/> cannot create the requested instance, that <see langword="null"/> is returned.
+    /// This type does assume that if <see cref="IServiceProvider"/> cannot create the requested instance, <see langword="null"/> is returned.
     /// </summary>
     public class ServiceProviderValidatorFacotry : ValidatorFactoryBase
     {

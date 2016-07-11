@@ -9,7 +9,7 @@ namespace FluentValidation.Extensions.DataAnnotations
     /// <summary>
     /// A set of extension methods for the <see cref="AbstractValidator{T}"/> class used to incorporated Data Annoation attributes into FluentValidation.
     /// </summary>
-    public static class AbstractValidatorExtensionsx
+    public static class AbstractValidatorExtensions
     {
         /// <summary>
         /// Associates a <see cref="ValidationAttribute"/> to be used when validating the type <typeparamref name="T"/>  
@@ -22,10 +22,10 @@ namespace FluentValidation.Extensions.DataAnnotations
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (attribute == null) throw new ArgumentNullException(nameof(attribute));
 
-            //var usage = attribute.GetType().GetCustomAttributes(typeof(AttributeUsageAttribute), false).Cast<AttributeUsageAttribute>().FirstOrDefault();
-            //if (usage.ValidOn.HasFlag(AttributeTargets.Class) == false)
-            //    throw new InvalidOperationException("Cannot call Custom with an attribute that is not meant to decorate a class");            
-            
+            var usage = attribute.GetType().GetCustomAttributes(typeof(AttributeUsageAttribute), false).Cast<AttributeUsageAttribute>().FirstOrDefault();
+            if (usage.ValidOn.HasFlag(AttributeTargets.Class) == false)
+                throw new InvalidOperationException("Cannot call Custom with an attribute that is not meant to decorate a class");
+
             source.Custom((t, ctx) => DataAnnotationsHelper.ExecuteValidationAttribute(t, ctx, attribute).FirstOrDefault());
         }
 

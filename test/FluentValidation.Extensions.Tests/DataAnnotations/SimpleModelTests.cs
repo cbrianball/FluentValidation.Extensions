@@ -39,13 +39,12 @@ namespace FluentValidation.Extensions.Tests.DataAnnotations
             v.Validate(new PersonModel()).IsValid.Should().BeTrue();
         }
 
-        [Test, Ignore("Broken")]
+        [Test, Ignore("Broken: Don't know why, causes TypeLoadException")]
         public void DataAnnotationsShouldFire()
         {
             var person = new PersonModel();
 
             var v = new PersonValidator();
-            //v.SetDataAnnotationValidators();
             v.InitializeDataAnnotations();
 
             var test = v.Validate(new PersonModel()).IsValid;

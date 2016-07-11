@@ -19,6 +19,11 @@ namespace FluentValidation.Extensions.DataAnnotations
             _validationAttribute = attribute;
         }
 
+        /// <summary>
+        /// Performs validation by invoke the <see cref="ValidationAttribute"/> that was passed into the constructor. 
+        /// </summary>
+        /// <param name="context">The context from FluentValidation of the current validation operation</param>
+        /// <returns></returns>
         protected override bool IsValid(PropertyValidatorContext context)
         {
             var ctx = new System.ComponentModel.DataAnnotations.ValidationContext(context.Instance) { MemberName = context.PropertyName };

@@ -17,7 +17,7 @@ namespace FluentValidation.Extensions
         /// </summary>
         /// <typeparam name="T">Type type to be validated</typeparam>
         /// <param name="source">The validator class</param>
-        /// <param name="factory">The <see cref="IValiationFactory"/> instance used to locate child validator types; <see cref="ValidatorFactories.Default"/> will be used if one is not provided</param>
+        /// <param name="factory">The <see cref="IValidatorFactory"/> instance used to locate child validator types; <see cref="ValidatorFactories.Default"/> will be used if one is not provided</param>
         /// <param name="ruleSet">The rule set assigned to the discovered validators (default: null)</param>
         public static void SetChildValidators<T>(this AbstractValidator<T> source, IValidatorFactory factory = null, string ruleSet = null)
         {

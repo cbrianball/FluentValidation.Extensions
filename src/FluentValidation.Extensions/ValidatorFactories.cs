@@ -6,7 +6,7 @@
     public static class ValidatorFactories
     {
         /// <summary>
-        /// The instance of <see cref="IValidatorFactory" used by <see cref="FluentValidation.Extensions"/> when one is not passed in to a method that requires one.
+        /// The instance of <see cref="IValidatorFactory"/> used by <see cref="FluentValidation.Extensions"/> when one is not passed in to a method that requires one.
         /// </summary>
         public static IValidatorFactory Default { get; set; }
     }

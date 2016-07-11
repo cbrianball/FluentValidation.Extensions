@@ -6,8 +6,17 @@ using System.Linq;
 
 namespace FluentValidation.Extensions.DataAnnotations
 {
-    public static class AbstractValidatorExtensions
+    /// <summary>
+    /// A set of extension methods for the <see cref="AbstractValidator{T}"/> class used to incorporated Data Annoation attributes into FluentValidation.
+    /// </summary>
+    public static class AbstractValidatorExtensionsx
     {
+        /// <summary>
+        /// Associates a <see cref="ValidationAttribute"/> to be used when validating the type <typeparamref name="T"/>  
+        /// </summary>
+        /// <typeparam name="T">The type to be validated</typeparam>
+        /// <param name="source">The validator class</param>
+        /// <param name="attribute">The <see cref="ValidationAttribute"/> to be executed whenever validation is performed</param>
         public static void Custom<T>(this AbstractValidator<T> source, ValidationAttribute attribute)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -20,6 +29,12 @@ namespace FluentValidation.Extensions.DataAnnotations
             source.Custom((t, ctx) => DataAnnotationsHelper.ExecuteValidationAttribute(t, ctx, attribute).FirstOrDefault());
         }
 
+        /// <summary>
+        /// Scans all properpties of the type to be validated and associates the <see cref="ValidationAttribute"/> with the property it is decorating. 
+        /// </summary>
+        /// <typeparam name="T">The type to be validated</typeparam>
+        /// <param name="source">The validator class</param>
+        /// <param name="ruleSet">The rule set assigned to the discovered validators (deafult: null)</param>
         public static void SetDataAnnotationValidators<T>(this AbstractValidator<T> source, string ruleSet = null)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));

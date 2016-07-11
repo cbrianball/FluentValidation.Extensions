@@ -10,6 +10,9 @@ namespace FluentValidation.Extensions.DataAnnotations
 {
     internal static class DataAnnotationsHelper
     {
+        /// <summary>
+        /// Helper method to execute a <see cref="ValidationAttribute"/> based on the current <see cref="ValidationContext{T}"/>.  
+        /// </summary>        
         internal static IEnumerable<Results.ValidationFailure> ExecuteValidationAttribute<T>(T instance, ValidationContext<T> ctx, ValidationAttribute attribute)
         {
             var result = attribute.GetValidationResult(instance, new System.ComponentModel.DataAnnotations.ValidationContext(instance));

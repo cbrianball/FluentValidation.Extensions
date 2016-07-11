@@ -6,12 +6,17 @@ using System.Linq;
 
 namespace FluentValidation.Extensions.DataAnnotations
 {
-    public static class Extensions
+    public static class AbstractValidatorExtensions
     {
         public static void Custom<T>(this AbstractValidator<T> source, ValidationAttribute attribute)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (attribute == null) throw new ArgumentNullException(nameof(attribute));
 
+            //var usage = attribute.GetType().GetCustomAttributes(typeof(AttributeUsageAttribute), false).Cast<AttributeUsageAttribute>().FirstOrDefault();
+            //if (usage.ValidOn.HasFlag(AttributeTargets.Class) == false)
+            //    throw new InvalidOperationException("Cannot call Custom with an attribute that is not meant to decorate a class");            
+            
             source.Custom((t, ctx) => DataAnnotationsHelper.ExecuteValidationAttribute(t, ctx, attribute).FirstOrDefault());
         }
 

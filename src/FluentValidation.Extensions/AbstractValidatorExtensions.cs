@@ -6,17 +6,26 @@ using System.Linq;
 
 namespace FluentValidation.Extensions
 {
+    /// <summary>
+    /// A set of extension methods for the <see cref="AbstractValidator{T}"/> class.
+    /// </summary>
     public static class AbstractValidatorExtensions
     {
-        public static void SetChildValidators<T>(this AbstractValidator<T> source, string ruleSet = null)
-        {
-            source.SetChildValidators(ValidatorFactories.Default, ruleSet);
-        }
-
-        public static void SetChildValidators<T>(this AbstractValidator<T> source, IValidatorFactory factory, string ruleSet = null)
+        /// <summary>
+        /// Scans for properties with complex types. When one is found, a validator is requested;
+        /// if one is found, it is included as a child validator.        
+        /// </summary>
+        /// <typeparam name="T">Type type to be validated</typeparam>
+        /// <param name="source">The validator class</param>
+        /// <param name="factory">The <see cref="IValiationFactory"/> instance used to locate child validator types; <see cref="ValidatorFactories.Default"/> will be used if one is not provided</param>
+        /// <param name="ruleSet">The rule set assigned to the discovered validators (default: null)</param>
+        public static void SetChildValidators<T>(this AbstractValidator<T> source, IValidatorFactory factory = null, string ruleSet = null)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (factory == null) throw new ArgumentNullException(nameof(source));
+
+            factory = factory ?? ValidatorFactories.Default;
+            if (factory == null)
+                throw new InvalidOperationException($"Parameter '{nameof(factory)}' is null and no default was found at {typeof(ValidatorFactories).FullName}.{nameof(ValidatorFactories.Default)}");
 
             var properties = typeof(T).GetProperties();
 
